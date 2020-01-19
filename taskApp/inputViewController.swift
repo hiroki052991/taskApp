@@ -46,7 +46,7 @@ class InputViewController: UIViewController {
                self.task.contents = self.contentsTextView.text
                self.task.date = self.datePicker.date
                 //追加
-               self.task.category = self.categoryTextField.text!
+            self.task.category = self.categoryTextField.text!
                self.realm.add(self.task, update: .modified)
            }
         setNotification(task: task)
@@ -66,7 +66,6 @@ class InputViewController: UIViewController {
     } else {
         content.body = task.contents
     }
-        //追加
     
         
         
