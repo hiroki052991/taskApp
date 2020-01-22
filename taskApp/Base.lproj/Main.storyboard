@@ -15,8 +15,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="W3z-28-hdC">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KgL-fO-vNa">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="V1g-M2-PJY">
@@ -32,10 +36,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="KgL-fO-vNa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4Sy-eE-HEK"/>
+                            <constraint firstItem="W3z-28-hdC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Klh-Hx-RpZ"/>
+                            <constraint firstItem="KgL-fO-vNa" firstAttribute="top" secondItem="W3z-28-hdC" secondAttribute="bottom" id="RjG-ka-XYw"/>
+                            <constraint firstItem="W3z-28-hdC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Uz7-B3-zca"/>
                             <constraint firstItem="KgL-fO-vNa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cnY-EO-VRe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KgL-fO-vNa" secondAttribute="bottom" id="hW7-7H-pyy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KgL-fO-vNa" secondAttribute="trailing" id="lkc-qe-WJr"/>
+                            <constraint firstItem="W3z-28-hdC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uFX-xV-sHh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -47,6 +54,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="seachBar" destination="W3z-28-hdC" id="peX-Nu-cnt"/>
                         <outlet property="tableView" destination="KgL-fO-vNa" id="Xk7-kr-FhE"/>
                         <segue destination="qSp-LX-B9Q" kind="show" identifier="cellSegue" id="DBm-KW-ltK"/>
                     </connections>

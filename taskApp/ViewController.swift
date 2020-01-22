@@ -10,9 +10,10 @@ import UIKit
 import RealmSwift
 import UserNotifications 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var seachBar: UISearchBar!
     
     let realm = try! Realm() 
     
@@ -20,11 +21,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        seachBar.delegate = self
+        seachBar.placeholder = "カテゴリー"
+        seachBar.showsCancelButton = true
         
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != ""{
+        taskArray = realm.objects(Task.self).filter("category BEGINSWITH %@" ,searchText)
+        }else{
+         taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
+        }
+        tableView.reloadData()
+    
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.text = ""
+            view.endEditing(true)
+        taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
+    //tableViewを再読み込みする
+            tableView.reloadData()
+        }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
